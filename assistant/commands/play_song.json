@@ -1,0 +1,12 @@
+{
+    "name": "play song on youtube",
+    "description": "Search and play song on youtube",
+    "syntax": "play {song_name}",
+    "variable": "{song_name}",
+    "response": [
+        "Sure, playing {song_name}",
+        "Sure, will play {song_name}",
+        "Opening youtube"
+    ],
+    "function": "play_song"
+}

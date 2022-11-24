@@ -1,4 +1,6 @@
 import os, json
+import random
+import threading
 from importlib import import_module
 from assistant.console_manager import ConsoleManager as console
 
@@ -9,6 +11,8 @@ class CommandManager:
     def __init__(self):
         self._commands = []
         self._methods = {}
+
+        console.print_info("Reading commands...COMPLETED")
 
         self._read_commands()
         self._read_methods()
@@ -71,8 +75,6 @@ class CommandManager:
         command_recommendation = {}
         best_score = 0
         variable_value = ""
-
-        command = command.lower().replace("bot", "")
         words = command.split(" ")
         
         for existing_command in self._commands:
@@ -93,7 +95,13 @@ class CommandManager:
             if command_score > best_score:
                 command_recommendation = existing_command
                 best_score = command_score
-                variable_value = temp_command[0]
+                variable_value = " ".join(temp_command)
 
-        print(self._methods)
+        if command_recommendation != {}:
+            response = random.choice(command_recommendation['response'])
+            if command_recommendation['variable'] in response:
+                response = response.replace(command_recommendation['variable'], variable_value)
+            return response, command_recommendation, variable_value
+
+    def perform_command_action(self, command_recommendation, variable_value):
         self._methods[command_recommendation['function']].main(variable_value)

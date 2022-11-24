@@ -1,0 +1,10 @@
+{
+    "name": "give speech",
+    "description": "Jarvis can say speeches of any person pre-programmed on it",
+    "syntax": "give {person} speech",
+    "variable": "{person}",
+    "response": [
+        "here we go"
+    ],
+    "function": "give_speech"
+}

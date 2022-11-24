@@ -1,0 +1,6 @@
+colorama
+speechrecognition
+pyttsx3
+pyaudio
+google-api-python-client
+pynput

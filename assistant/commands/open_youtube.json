@@ -1,0 +1,12 @@
+{
+    "name": "open youtube",
+    "description": "Open youtube.com on browser with the search parameter on youtube search",
+    "syntax": "open {search_query} on youtube",
+    "variable": "{search_query}",
+    "response": [
+        "Sure, opening {search_query} on youtube",
+        "Sure, will search {search_query} on youtube",
+        "Opening youtube"
+    ],
+    "function": "open_youtube"
+}

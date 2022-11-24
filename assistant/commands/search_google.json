@@ -1,0 +1,12 @@
+{
+    "name": "perform google search",
+    "description": "Performs google search",
+    "syntax": "search {search_term}",
+    "variable": "{search_term}",
+    "response": [
+        "Sure, searching {search_query} on google",
+        "Sure, will search {search_query} on google",
+        "Opening google"
+    ],
+    "function": "search_google"
+}

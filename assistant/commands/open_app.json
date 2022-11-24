@@ -1,0 +1,11 @@
+{
+    "name": "open app",
+    "description": "Jarvis can open desktop app",
+    "syntax": "open {app_name} app",
+    "variable": "{app_name}",
+    "response": [
+        "Sure, opening {app_name} app",
+        "opening {app_name}"
+    ],
+    "function": "open_app"
+}

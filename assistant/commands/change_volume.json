@@ -1,0 +1,14 @@
+{
+    "name": "change volume",
+    "description": "Jarvis can increase or decrease volume",
+    "syntax": "{term} volume",
+    "variable": "{term}",
+    "response": [
+        "sure, {term}ing volume", 
+        "will do", 
+        "as you wish", 
+        "ok {term}ing volume", 
+        "you got it"
+    ],
+    "function": "change_volume"
+}

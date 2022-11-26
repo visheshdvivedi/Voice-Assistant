@@ -1,0 +1,13 @@
+{
+    "name": "tell me about something",
+    "description": "Jarvis can search for something on google and dictate the text of the first link it found",
+    "syntax": "tell me about {search_term}",
+    "variable": "{search_term}",
+    "response": [
+        "searching {search_term} on google",
+        "on it",
+        "as you wish",
+        "sure"
+    ],
+    "function": "tell_me_about"
+}

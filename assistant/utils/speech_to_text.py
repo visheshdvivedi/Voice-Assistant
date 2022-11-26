@@ -18,8 +18,8 @@ def listen_awake_callback(recognizer, audio):
     except sr.UnknownValueError:
         pass
     except SystemExit:
-        self._tts.set_speed(170)
-        self._tts.speak("Terminating all activities")
+        print("Exiting ...")
+        exit(0)
 
 class SpeechToText:
     def __init__(self, initialize_message=False):
@@ -27,8 +27,11 @@ class SpeechToText:
         if initialize_message:
             console.print_info("Initializing speech to text drive...", True)
 
-        self._recognizer = sr.Recognizer()
-        self._microphone = sr.Microphone()
+        try:
+            self._recognizer = sr.Recognizer()
+            self._microphone = sr.Microphone()
+        except:
+            pass
 
         if initialize_message:
             print("COMPLETED")

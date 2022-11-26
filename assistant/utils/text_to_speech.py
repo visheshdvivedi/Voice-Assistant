@@ -44,10 +44,11 @@ class TextToSpeech:
         return self._engine.getProperty("volume")
 
     def speak(self, message):
-        try:    
-            ConsoleManager.print_bot_chat(message)
-            self._engine.say(message)
-            self._engine.runAndWait()
+        try:
+            if message != "":
+                ConsoleManager.print_bot_chat(message)
+                self._engine.say(message)
+                self._engine.runAndWait()
         except:
             ConsoleManager.print_error("Bot is unable to speak")
             exit(0)

@@ -75,33 +75,59 @@ class CommandManager:
         command_recommendation = {}
         best_score = 0
         variable_value = ""
+
         words = command.split(" ")
         
         for existing_command in self._commands:
-            syntax = existing_command['syntax']
-            left_index = syntax.rfind('{')
-            right_index = syntax.rfind('}')
-            
-            syntax_words = (syntax[:left_index - 1] + syntax[right_index+1:]).split(" ")
-            
-            temp_command = command.split(" ")
-            command_score = 0
-            for word in syntax_words:
-                for check_word in words:
-                    if word == check_word:
-                        command_score += 1
-                        temp_command.remove(word)
-            
-            if command_score > best_score:
-                command_recommendation = existing_command
-                best_score = command_score
-                variable_value = " ".join(temp_command)
+            if existing_command['variable'] != "":
+
+                syntax = existing_command['syntax']
+                left_index = syntax.rfind('{')
+                right_index = syntax.rfind('}')
+                
+                syntax_words = (syntax[:left_index - 1] + syntax[right_index+1:]).split(" ")
+                
+                temp_command = command.split(" ")
+                command_score = 0
+                for word in syntax_words:
+                    for check_word in words:
+                        if word == check_word:
+                            command_score += 1
+                            temp_command.remove(word)
+                
+                if command_score > best_score:
+                    command_recommendation = existing_command
+                    best_score = command_score
+                    variable_value = " ".join(temp_command)
+
+            else:
+                syntax = existing_command['syntax']
+                syntax_words = syntax.split(' ')
+
+                command_score = 0
+                for word in syntax_words:
+                    for check_word in words:
+                        if word == check_word:
+                            command_score += 1
+                
+                if command_score > best_score:
+                    command_recommendation = existing_command
+                    best_score = command_score
+                    variable_value = ""
 
         if command_recommendation != {}:
-            response = random.choice(command_recommendation['response'])
-            if command_recommendation['variable'] in response:
+            
+            if command_recommendation['response'] != []:
+                response = random.choice(command_recommendation['response'])
+            else:
+                response = ""
+
+            if command_recommendation['variable'] in response and variable_value != "":
                 response = response.replace(command_recommendation['variable'], variable_value)
             return response, command_recommendation, variable_value
 
     def perform_command_action(self, command_recommendation, variable_value):
-        self._methods[command_recommendation['function']].main(variable_value)
+        if variable_value != "":
+            self._methods[command_recommendation['function']].main(variable_value)
+        else:
+            self._methods[command_recommendation['function']].main()

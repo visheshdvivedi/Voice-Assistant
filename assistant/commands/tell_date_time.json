@@ -1,0 +1,8 @@
+{
+    "name": "tell date time",
+    "description": "Jarvis can tell the current date time",
+    "syntax": "tell date and time",
+    "variable": "",
+    "response": [],
+    "function": "tell_date_time"
+}

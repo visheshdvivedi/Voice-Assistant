@@ -1,0 +1,10 @@
+{
+    "name": "weather at location",
+    "description": "Jarvis can tell the weather status of any city",
+    "syntax": "how is the weather at {city_name}",
+    "variable": "{city_name}",
+    "response": [
+        "let me check"
+    ],
+    "function": "weather_at_location"
+}
